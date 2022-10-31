@@ -1,0 +1,69 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+ul {
+  position: relative;
+}
+
+ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  top: 0;
+}
+
+ul li,
+ul a {
+  height: 16px;
+  display: block;
+}
+
+.tile {
+  width: 16px;
+  transform: scale(3);
+}
+
+.ice {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1736px;
+}
+
+.rock {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -132px -1704px;
+}
+
+.wall-left {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -378px;
+}
+
+.wall-top {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -195px -254px;
+}
+
+.wall-right {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -204px -262px;
+}
+
+.wall-topleft {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -254px;
+}
+
+.wall-topright {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -204px -254px;
+}
+
+.wall-bottom {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -188px -1720px;
+}
+
+.floor-start {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1704px;
+}
+
+.floor-goal {
+  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1704px;
+}
