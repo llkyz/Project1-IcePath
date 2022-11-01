@@ -102,6 +102,7 @@ const puzzle5 = [
   ];
 */
 const puzzleCollection = [puzzle1, puzzle2, puzzle3, puzzle4, puzzle5];
+const startingPos = [[13,14,3],[],[],[],[]] // X coord, Y coord, facing direction
 /*
 0 = Ice
 1 = Rock
@@ -114,6 +115,14 @@ const puzzleCollection = [puzzle1, puzzle2, puzzle3, puzzle4, puzzle5];
 8 = Floor Start
 9 = Floor Goal
 */
+
+const facingDirection = [
+  "player-idle-down",
+  "player-idle-up",
+  "player-idle-left",
+  "player-idle-right"
+]
+
 
 const tilemap = [
   "ice",
@@ -128,17 +137,42 @@ const tilemap = [
   "floor-goal",
 ];
 
-for (y = puzzle2.length; y > 0; y--) {
+let randomPuzzle = Math.floor(Math.random() * puzzleCollection.length)
+posOffsetX = Math.ceil(puzzleCollection[randomPuzzle][0].length / 2) * -80
+posOffsetY = Math.ceil(puzzleCollection[randomPuzzle].length / 2) * -80
+//console.log(randomPuzzle)
+
+/*
+for (y = puzzleCollection[randomPuzzle].length; y > 0; y--) {
   const sub_ul = $("<ul/>");
-  for (x = 1; x < puzzle2[0].length + 1; x++) {
-    const sub_li = $("<li/>").css("left", `${x * 48}px`);
-    sub_li.css("top", `${y * 48}px`);
+  for (x = 1; x < puzzleCollection[randomPuzzle][0].length + 1; x++) {
+    const sub_li = $("<li/>").css("left", `${posOffsetX + (x * 40*2)}px`);
+    sub_li.css("top", `${posOffsetY + (y * 40)}px`);
     sub_li.addClass("tile");
-    sub_li.addClass(tilemap[puzzle2[y - 1][x - 1]]);
+    sub_li.addClass(tilemap[puzzleCollection[randomPuzzle][y - 1][x - 1]]);
     sub_ul.append(sub_li);
   }
   $("body").append(sub_ul);
 }
+*/
+
+for (y = puzzleCollection[randomPuzzle].length; y > 0; y--) {
+  for (x = 1; x < puzzleCollection[randomPuzzle][0].length + 1; x++) {
+    const sub_li = $("<div>").css("left", `${posOffsetX + (x * 80)}px`);
+    sub_li.css("top", `${posOffsetY + (y * 80)}px`);
+    sub_li.addClass("tile");
+    sub_li.addClass(tilemap[puzzleCollection[randomPuzzle][y - 1][x - 1]]);
+    $("body").append(sub_li);
+  }
+}
+
+const playerObject = $("<div>");
+playerObject.addClass("player");
+playerObject.attr('id', "player-idle-left")
+playerObject.css("left", "40px");
+playerObject.css("top", `${40}px`);
+$("body").append(playerObject)
+
 
 $(document).keydown(function (e) {
   if (e.which === 37 || e.which === 65) {

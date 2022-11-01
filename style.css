@@ -25,7 +25,12 @@ ul a {
 
 .tile {
   width: 16px;
-  transform: scale(3);
+  height: 16px;
+  right: 0px;
+  bottom: 0px;
+  transform: scale(2.5);
+  position: absolute;
+  margin: auto;
 }
 
 .ice {
@@ -66,4 +71,50 @@ ul a {
 
 .floor-goal {
   background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1704px;
+}
+
+.player {
+  width: 16px;
+  height: 16px;
+  left: 0px;
+  right: 0px;
+  transform: scale(2.5);
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  background: url("red.png") 0px 0px;
+}
+
+#player-idle-down {
+  background: url("red.png") 0px 0px;
+}
+
+#player-idle-up {
+  background: url("red.png") 0px -16px;
+}
+
+#player-idle-left {
+  background: url("red.png") 0px -32px;
+}
+
+#player-idle-right {
+  background: url("red.png") 0px -32px;
+  transform: scale(2.5) scaleX(-1);
+}
+
+#player-move-down {
+  background: url("red.png") 0px -48px;
+}
+
+#player-move-up {
+  background: url("red.png") 0px -64px;
+}
+
+#player-move-left {
+  background: url("red.png") 0px -80px;
+}
+
+#player-move-right {
+  background: url("red.png") 0px -80px;
+  transform: scale(2.5) scaleX(-1);
 }
