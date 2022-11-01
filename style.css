@@ -78,10 +78,11 @@ ul a {
   height: 16px;
   left: 0px;
   right: 0px;
+  top: 0px;
+  bottom: 0px;
   transform: scale(2.5);
   position: absolute;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   background: url("red.png") 0px 0px;
 }
 
