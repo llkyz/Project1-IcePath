@@ -3,24 +3,8 @@ body {
   margin: 0;
   height: 100%;
   overflow: hidden;
-}
-
-ul {
-  position: relative;
-}
-
-ul li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  position: absolute;
-  top: 0;
-}
-
-ul li,
-ul a {
-  height: 16px;
-  display: block;
+  background: url("assets/Ice-Caves.jpg");
+  /* https://steamprofiledesign.com/wp-content/uploads/2018/06/Ice-Caves.jpg */
 }
 
 .tile {
@@ -34,43 +18,43 @@ ul a {
 }
 
 .ice {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1736px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1736px;
 }
 
 .rock {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -132px -1704px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -132px -1704px;
 }
 
 .wall-left {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -378px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -378px;
 }
 
 .wall-top {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -195px -254px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -195px -254px;
 }
 
 .wall-right {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -204px -262px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -204px -262px;
 }
 
 .wall-topleft {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -254px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -254px;
 }
 
 .wall-topright {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -204px -254px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -204px -254px;
 }
 
 .wall-bottom {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -188px -1720px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -188px -1720px;
 }
 
 .floor-start {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1704px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1704px;
 }
 
 .floor-goal {
-  background: url("Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1704px;
+  background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1704px;
 }
 
 .player {
@@ -83,39 +67,104 @@ ul a {
   transform: scale(2.5);
   position: absolute;
   margin: auto;
-  background: url("red.png") 0px 0px;
+  background: url("assets/red.png") 0px 0px;
 }
 
 #player-idle-down {
-  background: url("red.png") 0px 0px;
+  background: url("assets/red.png") 0px 0px;
 }
 
 #player-idle-up {
-  background: url("red.png") 0px -16px;
+  background: url("assets/red.png") 0px -16px;
 }
 
 #player-idle-left {
-  background: url("red.png") 0px -32px;
+  background: url("assets/red.png") 0px -32px;
 }
 
 #player-idle-right {
-  background: url("red.png") 0px -32px;
+  background: url("assets/red.png") 0px -32px;
   transform: scale(2.5) scaleX(-1);
 }
 
 #player-move-down {
-  background: url("red.png") 0px -48px;
+  background: url("assets/red.png") 0px -48px;
 }
 
 #player-move-up {
-  background: url("red.png") 0px -64px;
+  background: url("assets/red.png") 0px -64px;
 }
 
 #player-move-left {
-  background: url("red.png") 0px -80px;
+  background: url("assets/red.png") 0px -80px;
 }
 
 #player-move-right {
-  background: url("red.png") 0px -80px;
+  background: url("assets/red.png") 0px -80px;
   transform: scale(2.5) scaleX(-1);
+}
+
+.blackout {
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: black;
+  opacity: 0.5;
+}
+
+.win-screen {
+  width: 182px;
+  height: 73px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/winscreen.png");
+  transform: scale(2.5);
+}
+
+.new-game {
+  width: 64px;
+  height: 15px;
+  left: -239px;
+  right: 0px;
+  top: 45px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/new-game.png");
+  transform: scale(2.5);
+}
+.new-game:hover {
+  cursor: pointer;
+}
+
+.new-game:active {
+  background: url("assets/new-game-invert.png");
+}
+
+.return-to-title {
+  width: 80px;
+  height: 15px;
+  left: 200px;
+  right: 0px;
+  top: 45px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/return-to-title.png");
+  transform: scale(2.5);
+}
+
+.return-to-title:hover {
+  cursor: pointer;
+}
+
+.return-to-title:active {
+  background: url("assets/return-to-title-invert.png");
 }
