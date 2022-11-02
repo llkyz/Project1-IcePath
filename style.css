@@ -142,9 +142,6 @@ body {
 }
 .new-game:hover {
   cursor: pointer;
-}
-
-.new-game:active {
   background: url("assets/new-game-invert.png");
 }
 
@@ -163,38 +160,86 @@ body {
 
 .return-to-title:hover {
   cursor: pointer;
-}
-
-.return-to-title:active {
   background: url("assets/return-to-title-invert.png");
 }
 
 .title-screen {
   width: 500px;
-  height: 500px;
+  height: 700px;
   left: 0px;
   right: 0px;
   top: 0px;
   bottom: 0px;
   position: absolute;
   margin: auto;
-  background: url("assets/[insert title screen here].png");
+  background: white;
+}
+
+.title {
+  width: 373px;
+  height: 207px;
+  left: 0px;
+  right: 0px;
+  top: -440px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/cave-escape.gif");
+}
+
+.cave {
+  width: 140px;
+  height: 81px;
+  left: 0px;
+  right: 0px;
+  top: 10px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/cave.png");
+  transform: scale(2.5);
+}
+
+.controls {
+  width: 179px;
+  height: 15px;
+  left: 0px;
+  right: 0px;
+  top: 300px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/controls.png");
   transform: scale(2.5);
 }
 
 .start-game {
-  width: 500px;
-  height: 500px;
+  width: 64px;
+  height: 25px;
   left: 0px;
   right: 0px;
-  top: 0px;
+  top: 460px;
   bottom: 0px;
   position: absolute;
   margin: auto;
-  background: url("assets/[insert start game button].png");
+  background: url("assets/start-game.png");
   transform: scale(2.5);
 }
 
 .start-game:hover {
-  background: url("assets/[insert start game button].png");
+  cursor: pointer;
+  background: url("assets/start-game-invert.png");
+}
+
+.footer {
+  width: 96px;
+  height: 7px;
+  left: 0px;
+  right: 0px;
+  top: 650px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/footer.png");
+  transform: scale(2.5);
 }

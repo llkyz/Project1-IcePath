@@ -25,20 +25,18 @@ const puzzle2 = [
 ];
 
 const puzzle3 = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+  [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 7, 4],
 ];
 
 const puzzle4 = [
@@ -94,7 +92,7 @@ const puzzle5 = [
   ];
 */
 const puzzleCollection = [puzzle1, puzzle2, puzzle3, puzzle4, puzzle5];
-const startingPos = [[14, 13, 1], [0, 3, 3], [], [], []]; // X coord, Y coord, facing direction
+const startingPos = [[14, 13, 1], [0, 3, 3], [0, 10, 3], [], []]; // X coord, Y coord, facing direction
 
 /*
 0 = Ice
@@ -144,6 +142,7 @@ let movementEnabled = 0;
 let win = 0;
 let currentPosPx = 0;
 let currentPosArray = 0;
+let previousPuzzles = [999, 999];
 
 // =========================================
 // Instantiate Puzzle Data
@@ -151,6 +150,12 @@ let currentPosArray = 0;
 
 const populateData = () => {
   randomPuzzle = Math.floor(Math.random() * puzzleCollection.length);
+  while (
+    randomPuzzle == previousPuzzles[0] ||
+    randomPuzzle == previousPuzzles[1]
+  ) {
+    randomPuzzle = Math.floor(Math.random() * puzzleCollection.length);
+  }
   currentPuzzle = puzzleCollection[randomPuzzle];
   posOffsetX = ((puzzleCollection[randomPuzzle][0].length + 1) / 2) * -80;
   posOffsetY = ((puzzleCollection[randomPuzzle].length + 1) / 2) * -80;
@@ -195,9 +200,17 @@ const populateScreen = () => {
 
 const showTitleScreen = () => {
   const $titleScreen = $("<div>").addClass("title-screen");
+  const $title = $("<div>").addClass("title");
+  const $cave = $("<div>").addClass("cave");
+  const $controls = $("<div>").addClass("controls");
   const $startGame = $("<div>").addClass("start-game");
+  const $footer = $("<div>").addClass("footer");
   $("body").append($titleScreen);
+  $("body").append($title);
+  $("body").append($cave);
+  $("body").append($controls);
   $("body").append($startGame);
+  $("body").append($footer);
 
   $startGame.on("click", () => {
     console.log("starting new game");
@@ -209,7 +222,11 @@ const showTitleScreen = () => {
 
 const removeTitleScreen = () => {
   $(".title-screen").remove();
+  $(".title").remove();
+  $(".cave").remove();
+  $(".controls").remove();
   $(".start-game").remove();
+  $(".footer").remove();
   return;
 };
 
@@ -218,6 +235,8 @@ const removeTitleScreen = () => {
 // =========================================
 
 const winScreen = () => {
+  previousPuzzles[1] = previousPuzzles[0];
+  previousPuzzles[0] = randomPuzzle;
   movementEnabled = 0;
   const $winScreen = $("<div>").addClass("win-screen");
   const $titleReturn = $("<div>").addClass("return-to-title");
@@ -428,6 +447,6 @@ $(document).keydown(function (e) {
 // Execute when user loads game
 // =========================================
 
-//showTitleScreen();
-populateData();
-populateScreen();
+showTitleScreen();
+//populateData();
+//populateScreen();
