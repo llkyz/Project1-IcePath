@@ -17,6 +17,7 @@ body {
   margin: auto;
 }
 
+/* https://www.spriters-resource.com/game_boy_gbc/pokemongoldsilver/sheet/60234/ */
 .ice {
   background: url("assets/Game Boy GBC - Pokemon Gold Silver - Tileset Day.png") -180px -1736px;
 }
@@ -69,6 +70,8 @@ body {
   margin: auto;
   background: url("assets/red.png") 0px 0px;
 }
+
+/* https://github.com/pret/pokegold/blob/master/gfx/sprites/red.png */
 
 #player-idle-down {
   background: url("assets/red.png") 0px 0px;
