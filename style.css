@@ -168,3 +168,33 @@ body {
 .return-to-title:active {
   background: url("assets/return-to-title-invert.png");
 }
+
+.title-screen {
+  width: 500px;
+  height: 500px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/[insert title screen here].png");
+  transform: scale(2.5);
+}
+
+.start-game {
+  width: 500px;
+  height: 500px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  position: absolute;
+  margin: auto;
+  background: url("assets/[insert start game button].png");
+  transform: scale(2.5);
+}
+
+.start-game:hover {
+  background: url("assets/[insert start game button].png");
+}

@@ -129,55 +129,133 @@ const tilemap = [
   "floor-goal",
 ];
 
-let randomPuzzle = Math.floor(Math.random() * puzzleCollection.length);
-let currentPuzzle = puzzleCollection[randomPuzzle];
-let posOffsetX = ((puzzleCollection[randomPuzzle][0].length + 1) / 2) * -80;
-let posOffsetY = ((puzzleCollection[randomPuzzle].length + 1) / 2) * -80;
-let startingPosX = startingPos[randomPuzzle][0];
-let startingPosY = startingPos[randomPuzzle][1];
-let facingDirection = directionArray[startingPos[randomPuzzle][2]];
-let movementEnabled = 1;
+// =========================================
+// Declare Global Data
+// =========================================
+
+let randomPuzzle = 0;
+let currentPuzzle = 0;
+let posOffsetX = 0;
+let posOffsetY = 0;
+let startingPosX = 0;
+let startingPosY = 0;
+let facingDirection = 0;
+let movementEnabled = 0;
 let win = 0;
-let currentPosPx = [
-  posOffsetX + (startingPosX + 1) * 80,
-  posOffsetY + (startingPosY + 1) * 80,
-];
-let currentPosArray = [startingPosX, startingPosY];
+let currentPosPx = 0;
+let currentPosArray = 0;
 
 // =========================================
-// Instantiate Puzzle and Player
+// Instantiate Puzzle Data
 // =========================================
 
-for (y = puzzleCollection[randomPuzzle].length; y > 0; y--) {
-  for (x = 1; x < puzzleCollection[randomPuzzle][0].length + 1; x++) {
-    const sub_li = $("<div>").css("left", `${posOffsetX + x * 80}px`);
-    sub_li.css("top", `${posOffsetY + y * 80}px`);
-    sub_li.addClass("tile");
-    sub_li.addClass(tilemap[puzzleCollection[randomPuzzle][y - 1][x - 1]]);
-    $("body").append(sub_li);
+const populateData = () => {
+  randomPuzzle = Math.floor(Math.random() * puzzleCollection.length);
+  currentPuzzle = puzzleCollection[randomPuzzle];
+  posOffsetX = ((puzzleCollection[randomPuzzle][0].length + 1) / 2) * -80;
+  posOffsetY = ((puzzleCollection[randomPuzzle].length + 1) / 2) * -80;
+  startingPosX = startingPos[randomPuzzle][0];
+  startingPosY = startingPos[randomPuzzle][1];
+  facingDirection = directionArray[startingPos[randomPuzzle][2]];
+  movementEnabled = 1;
+  win = 0;
+  currentPosPx = [
+    posOffsetX + (startingPosX + 1) * 80,
+    posOffsetY + (startingPosY + 1) * 80,
+  ];
+  currentPosArray = [startingPosX, startingPosY];
+};
+
+// =========================================
+// Instantiate Puzzle Board and Player
+// =========================================
+
+const populateScreen = () => {
+  for (y = puzzleCollection[randomPuzzle].length; y > 0; y--) {
+    for (x = 1; x < puzzleCollection[randomPuzzle][0].length + 1; x++) {
+      const sub_li = $("<div>").css("left", `${posOffsetX + x * 80}px`);
+      sub_li.css("top", `${posOffsetY + y * 80}px`);
+      sub_li.addClass("tile");
+      sub_li.addClass(tilemap[puzzleCollection[randomPuzzle][y - 1][x - 1]]);
+      $("body").append(sub_li);
+    }
   }
-}
 
-const playerObject = $("<div>");
-playerObject.addClass("player");
-playerObject.attr("id", facingDirection);
-playerObject.css("left", `${currentPosPx[0]}px`);
-playerObject.css("top", `${currentPosPx[1]}px`);
-$("body").append(playerObject);
+  const playerObject = $("<div>");
+  playerObject.addClass("player");
+  playerObject.attr("id", facingDirection);
+  playerObject.css("left", `${currentPosPx[0]}px`);
+  playerObject.css("top", `${currentPosPx[1]}px`);
+  $("body").append(playerObject);
+};
 
 // =========================================
-// Execute win condition
+// Title Screen
+// =========================================
+
+const showTitleScreen = () => {
+  const $titleScreen = $("<div>").addClass("title-screen");
+  const $startGame = $("<div>").addClass("start-game");
+  $("body").append($titleScreen);
+  $("body").append($startGame);
+
+  $startGame.on("click", () => {
+    console.log("starting new game");
+    removeTitleScreen();
+    populateData();
+    populateScreen();
+  });
+};
+
+const removeTitleScreen = () => {
+  $(".title-screen").remove();
+  $(".start-game").remove();
+  return;
+};
+
+// =========================================
+// Win Screen Functions
 // =========================================
 
 const winScreen = () => {
   movementEnabled = 0;
-  $blackout = $("<div>").addClass("blackout");
+  const $winScreen = $("<div>").addClass("win-screen");
+  const $titleReturn = $("<div>").addClass("return-to-title");
+  const $newGame = $("<div>").addClass("new-game");
+  const $blackout = $("<div>").addClass("blackout");
   $blackout.css("width", `${currentPuzzle[0].length * 40}px`);
   $blackout.css("height", `${currentPuzzle.length * 40}px`);
   $("body").append($blackout);
-  $("body").append($("<div>").addClass("win-screen"));
-  $("body").append($("<div>").addClass("return-to-title"));
-  $("body").append($("<div>").addClass("new-game"));
+  $("body").append($winScreen);
+  $("body").append($titleReturn);
+  $("body").append($newGame);
+
+  $titleReturn.on("click", () => {
+    console.log("back to title");
+    removeWinScreen($blackout, $winScreen, $titleReturn, $newGame);
+    depopulate();
+    showTitleScreen();
+  });
+
+  $newGame.on("click", () => {
+    console.log("new game");
+    removeWinScreen($blackout, $winScreen, $titleReturn, $newGame);
+    depopulate();
+    populateData();
+    populateScreen();
+  });
+};
+
+const removeWinScreen = (blackout, myScreen, button1, button2) => {
+  blackout.remove();
+  myScreen.remove();
+  button1.remove();
+  button2.remove();
+};
+
+const depopulate = () => {
+  $(".player").remove();
+  $(".tile").remove();
 };
 
 // =========================================
@@ -345,3 +423,11 @@ $(document).keydown(function (e) {
     }
   }
 });
+
+// =========================================
+// Execute when user loads game
+// =========================================
+
+//showTitleScreen();
+populateData();
+populateScreen();
