@@ -22,5 +22,5 @@ Due to Javascript's lack of a **sleep** function, **setInterval** is used instea
 ## Sources
 
 Spritesheets from:
-- https://github.com/pret/pokegold/blob/master/gfx/sprites/red.png
+- https://github.com/pret/pokegold/
 - https://www.spriters-resource.com/game_boy_gbc/pokemongoldsilver/sheet/60234/
