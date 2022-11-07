@@ -294,12 +294,12 @@ const winScreen = () => {
   previousPuzzles[1] = previousPuzzles[0];
   previousPuzzles[0] = randomPuzzle;
   movementEnabled = 0;
-  const $winScreen = $("<div>").addClass("win-screen");
-  const $titleReturn = $("<div>").addClass("return-to-title");
-  const $newGame = $("<div>").addClass("new-game");
   const $blackout = $("<div>").addClass("blackout");
   $blackout.css("width", `${currentPuzzle[0].length * 40}px`);
   $blackout.css("height", `${currentPuzzle.length * 40}px`);
+  const $winScreen = $("<div>").addClass("win-screen");
+  const $titleReturn = $("<div>").addClass("return-to-title");
+  const $newGame = $("<div>").addClass("new-game");
   $("body").append($blackout);
   $("body").append($winScreen);
   $("body").append($titleReturn);
@@ -321,9 +321,9 @@ const winScreen = () => {
 
 const removeWinScreen = () => {
   $(".blackout").remove();
-  $(".myScreen").remove();
-  $(".button1").remove();
-  $("button2").remove();
+  $(".win-screen").remove();
+  $(".return-to-title").remove();
+  $(".new-game").remove();
 };
 
 const depopulate = () => {
