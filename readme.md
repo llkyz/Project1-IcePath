@@ -32,14 +32,14 @@ The game is rendered using graphics from 2 spritesheets: 1 for the puzzle tiles 
 
 To create the map, the sprites are rendered onto the screen in a two-dimensional grid. The player's character is also rendered in one of the predetermined starting tiles.
 
-![documentation3](https://user-images.githubusercontent.com/115427253/201114964-05f00470-e8a9-4b84-a87d-e07939aa976c.JPG)
+![documentation2](https://user-images.githubusercontent.com/115427253/201114971-e01f3690-f1a8-438e-a57f-c549f0836a61.JPG)
 
 ### Movement Logic
 The main mechanic of this game is that when a player moves across the ice floor, they are unable to stop and will keep moving in the same direction until they encounter an obstacle or wall, or reach the end goal.
 
 When a player moves in a certain direction, additional movement input is disabled. The game then checks if the position they are moving to is a valid tile. If it is valid, the player continues moving in that direction. Otherwise, the player will come to a stop and control is given back to them. While this is happening, the player's sprite is updated to a moving version, and then gets reverted to the original idle version once they come to a stop.
 
-![documentation2](https://user-images.githubusercontent.com/115427253/201114971-e01f3690-f1a8-438e-a57f-c549f0836a61.JPG)
+![documentation3](https://user-images.githubusercontent.com/115427253/201114964-05f00470-e8a9-4b84-a87d-e07939aa976c.JPG)
 
 ## Sources
 
