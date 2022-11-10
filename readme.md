@@ -5,7 +5,7 @@ A puzzle game heavily inspired by and styled after a certain <sub>hugely popular
 
 ## Installation
 
-Clone/download all files into a folder, and simply run **index.html** to start!
+The game can be played over at https://llkyz.github.io. Alternatively, clone/download all files into a folder, and run **index.html** to start.
 
 ## Controls
 
