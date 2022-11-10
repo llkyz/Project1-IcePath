@@ -185,6 +185,7 @@ const tilemap = [
 // =========================================
 
 const music = new Audio("assets/Ice-Path.ogg");
+music.loop = true;
 let randomPuzzle = 0;
 let currentPuzzle = 0;
 let posOffsetX = 0;
@@ -233,18 +234,20 @@ const populateScreen = () => {
   for (y = puzzleCollection[randomPuzzle].length; y > 0; y--) {
     for (x = 1; x < puzzleCollection[randomPuzzle][0].length + 1; x++) {
       const sub_li = $("<div>").css("left", `${posOffsetX + x * 80}px`);
-      sub_li.css("top", `${posOffsetY + y * 80}px`);
-      sub_li.addClass("tile");
-      sub_li.addClass(tilemap[puzzleCollection[randomPuzzle][y - 1][x - 1]]);
+      sub_li
+        .css("top", `${posOffsetY + y * 80}px`)
+        .addClass("tile")
+        .addClass(tilemap[puzzleCollection[randomPuzzle][y - 1][x - 1]]);
       $("body").append(sub_li);
     }
   }
 
   const playerObject = $("<div>");
-  playerObject.addClass("player");
-  playerObject.attr("id", facingDirection);
-  playerObject.css("left", `${currentPosPx[0]}px`);
-  playerObject.css("top", `${currentPosPx[1]}px`);
+  playerObject
+    .addClass("player")
+    .attr("id", facingDirection)
+    .css("left", `${currentPosPx[0]}px`)
+    .css("top", `${currentPosPx[1]}px`);
   $("body").append(playerObject);
 };
 
@@ -430,69 +433,57 @@ const goDown = () => {
 // =========================================
 // Keypress Listener
 // =========================================
+const holder = [
+  {
+    playerActive: "player-move-left",
+    playerIdle: "player-idle-left",
+    moveFunc: goLeft,
+  },
+  {
+    playerActive: "player-move-up",
+    playerIdle: "player-idle-up",
+    moveFunc: goUp,
+  },
+  {
+    playerActive: "player-move-right",
+    playerIdle: "player-idle-right",
+    moveFunc: goRight,
+  },
+  {
+    playerActive: "player-move-down",
+    playerIdle: "player-idle-down",
+    moveFunc: goDown,
+  },
+];
+
+const keypress = (arr) => {
+  $(".player").removeAttr("id").attr("id", arr.playerActive);
+  movementEnabled = 0;
+  let myInterval = setInterval(() => {
+    if (arr.moveFunc() === 1) {
+      clearInterval(myInterval);
+      if (win === 0) {
+        movementEnabled = 1;
+      }
+      $(".player").removeAttr("id").attr("id", arr.playerIdle);
+    }
+  }, 50);
+};
 
 $(document).keydown(function (e) {
   if (movementEnabled === 1) {
     if (e.which === 37 || e.which === 65) {
       // Left
-      $(".player").removeAttr("id");
-      $(".player").attr("id", "player-move-left");
-      movementEnabled = 0;
-      let myInterval = setInterval(() => {
-        if (goLeft() === 1) {
-          clearInterval(myInterval);
-          if (win === 0) {
-            movementEnabled = 1;
-          }
-          $(".player").removeAttr("id");
-          $(".player").attr("id", "player-idle-left");
-        }
-      }, 50);
+      keypress(holder[0]);
     } else if (e.which === 38 || e.which === 87) {
       // Up
-      $(".player").removeAttr("id");
-      $(".player").attr("id", "player-move-up");
-      movementEnabled = 0;
-      let myInterval = setInterval(() => {
-        if (goUp() === 1) {
-          clearInterval(myInterval);
-          if (win === 0) {
-            movementEnabled = 1;
-          }
-          $(".player").removeAttr("id");
-          $(".player").attr("id", "player-idle-up");
-        }
-      }, 50);
+      keypress(holder[1]);
     } else if (e.which === 39 || e.which === 68) {
       // Right
-      $(".player").removeAttr("id");
-      $(".player").attr("id", "player-move-right");
-      movementEnabled = 0;
-      let myInterval = setInterval(() => {
-        if (goRight() === 1) {
-          clearInterval(myInterval);
-          if (win === 0) {
-            movementEnabled = 1;
-          }
-          $(".player").removeAttr("id");
-          $(".player").attr("id", "player-idle-right");
-        }
-      }, 50);
+      keypress(holder[2]);
     } else if (e.which === 40 || e.which === 83) {
       // Down
-      $(".player").removeAttr("id");
-      $(".player").attr("id", "player-move-down");
-      movementEnabled = 0;
-      let myInterval = setInterval(() => {
-        if (goDown() === 1) {
-          clearInterval(myInterval);
-          if (win === 0) {
-            movementEnabled = 1;
-          }
-          $(".player").removeAttr("id");
-          $(".player").attr("id", "player-idle-down");
-        }
-      }, 50);
+      keypress(holder[3]);
     }
   }
   if (e.which === 27) {
