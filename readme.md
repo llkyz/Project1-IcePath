@@ -17,7 +17,29 @@ Puzzle data is saved as a 2D array, and is used to generate various map layouts 
 
 When a player moves in a certain direction, the game will compare the player's position to the puzzle data and keep moving them until they encounter an obstacle.
 
-Due to Javascript's lack of a **sleep** function, **setInterval** is used instead. Additional player input is disabled when the player moves. The movement function is continuously called to simulate motion and is stopped once the player hits an obstacle. 
+Due to Javascript's lack of a **sleep** function, **setInterval** is used instead. Additional player input is disabled when the player moves. The movement function is continuously called to simulate motion and is stopped once the player hits an obstacle.
+
+### Puzzle Data
+Each puzzle is stored as a 2D array to be called up later to generate the maps onscreen. The number in each array corresponds to the type of tile that will be rendered in that position. This also becomes useful later on in determining whether the player runs into a wall or obstacle, and whether they reach the goal.
+
+![documentation1](https://user-images.githubusercontent.com/115427253/201114957-28277eec-be8e-4f92-9280-45f43d106a35.JPG)
+
+
+### Rendering the Puzzle and Player
+The game is rendered using graphics from 2 spritesheets: 1 for the puzzle tiles and 1 for the player. The spritesheets were cropped and sized in CSS to form each individual sprite. These sprites could then be displayed in quick succession to simulate animation. Like in most 2D games, the sprites can be used to form a wide variety of map layouts without needing to store excessive image data.
+
+![documentation4](https://user-images.githubusercontent.com/115427253/201117006-f74d551c-2e0e-4838-802a-577b844c14a4.JPG)
+
+To create the map, the sprites are rendered onto the screen in a two-dimensional grid. The player's character is also rendered in one of the predetermined starting tiles.
+
+![documentation3](https://user-images.githubusercontent.com/115427253/201114964-05f00470-e8a9-4b84-a87d-e07939aa976c.JPG)
+
+### Movement Logic
+The main mechanic of this game is that when a player moves across the ice floor, they are unable to stop and will keep moving in the same direction until they encounter an obstacle or wall, or reach the end goal.
+
+When a player moves in a certain direction, additional movement input is disabled. The game then checks if the position they are moving to is a valid tile. If it is valid, the player continues moving in that direction. Otherwise, the player will come to a stop and control is given back to them. While this is happening, the player's sprite is updated to a moving version, and then gets reverted to the original idle version once they come to a stop.
+
+![documentation2](https://user-images.githubusercontent.com/115427253/201114971-e01f3690-f1a8-438e-a57f-c549f0836a61.JPG)
 
 ## Sources
 
