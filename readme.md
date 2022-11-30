@@ -1,4 +1,4 @@
-# GA Project 1: Cave Escape
+# Cave Escape
 
 A puzzle game heavily inspired by and styled after a certain <sub>hugely popular</sub> game. Players traverse through a treacherous cave, sliding across the slippery icy floor, in an attempt to reach the exit and escape.
 
